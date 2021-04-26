@@ -138,9 +138,6 @@ export default function PostEditor() {
         />
    </div>
    <div>
-   <label for="appt">Select a time:</label>
-   </div>
-   <div>
         <input 
         className="hidden"
         name="lat"
@@ -156,6 +153,7 @@ export default function PostEditor() {
     </div>
         <div>
           <h3>Body of Water:</h3>
+          <small>Lake or stream name.</small>
           <input
             name="river"
             type="text"
@@ -167,6 +165,7 @@ export default function PostEditor() {
         </div>
         <div>
           <h3>Beat - Section:</h3>
+          <small>Section of water you are wading or floating today.</small>
           <input
             name="location"
             type="text"
@@ -235,13 +234,12 @@ export default function PostEditor() {
         <h3>Hatch Activity</h3>
       </div>
       <section className="location">
-        <p>Is a hatch occuring that the fish are feeding on?</p>
       <div className="block">
         <h3>Hatch: &nbsp;{hatch}</h3>
+        <small>Is a hatch occuring that the fish are feeding on?</small>
       <input
             name="hatch"
             type="text"
-            placeholder="whats hatching?"
             onChange={onHatch}
           />
     </div>
@@ -257,8 +255,8 @@ export default function PostEditor() {
       <input
             name="streamflow"
             type="text"
-            placeholder={cfs}
             onChange={onCfs}
+
           />
     </div>
         <div className="block">
@@ -383,6 +381,7 @@ export default function PostEditor() {
             rows="4"
             cols="50"
             required="false"
+            placeholder="Observations, thoughts or other information."
           />
         </div>
         </section>
