@@ -138,7 +138,7 @@ select:focus {
 .location {
     @include block;
     @include border;
-    background-color: $gray-8;
+    background-color: $gray-6;
     box-shadow: $box-shadow;
 }
 .block {

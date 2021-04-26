@@ -174,7 +174,7 @@ export default function PostEditor() {
             onChange={onLocation}
           />
         </div>
-       <small> Waypoint: {lat} {lon}</small>
+       <small>current location: {lat} {lon}</small>
      </div>
 </section>
 <div className="block">
