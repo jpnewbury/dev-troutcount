@@ -51,10 +51,15 @@ body {
 }
 button {
     @include border;
+    cursor: pointer;
     margin: $margin;
     padding: $padding;
     background: $gray-9;
     box-shadow: $box-shadow;
+}
+button:hover {
+    background: $gray-2;
+    color: $gray-9;
 }
 p {
     margin-bottom: $margin;
@@ -80,12 +85,12 @@ input[type="text"]:focus {
     color: $gray-9;
 }
 textarea {
+    box-sizing: border-box;
     @include border;
     @include block;
     width: 100%;
     height: 150px;
     padding: 12px 20px;
-    box-sizing: border-box;
     background-color: $gray-8;
     resize: none;
 }
@@ -108,7 +113,7 @@ select:focus {
 
 .alert {
     color: red;
-    font-weight: 900;
+    font-weight: 700;
     @include center;
 }
 .card {
@@ -122,8 +127,8 @@ select:focus {
     max-width: 1200px;
 }
 .header {
-    padding: $padding;
-    @include border;
+    @include block;
+    padding: $padding + 5;
     font-weight: 600;
     background: $gray-8;
 }
@@ -133,7 +138,7 @@ select:focus {
 .location {
     @include block;
     @include border;
-    background-color: $gray-9;
+    background-color: $gray-8;
     box-shadow: $box-shadow;
 }
 .block {
@@ -187,12 +192,35 @@ select:focus {
 }
 
 .weather_icon {
-    height: 70px;
+    height: 100px;
     fill: $gray-3;
     @include block;
 }
+
 .weather_button {
     cursor: pointer;
     @include border;
     margin: $margin;
+    background: $gray-9;
+    padding: $padding;
+    max-width: 200px;
+}
+.weather_button:hover {
+    background: $gray-7;
+    color: white;
+}
+
+.weather_button_col-2l {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 40px;
+    max-width: 200px;
+}
+.weather_icon_small {
+    height: 40px;
+    fill: $gray-3;
+    padding-left: 10px;
+}
+.weather_icon_small:hover {
+    fill: white;
 }

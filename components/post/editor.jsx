@@ -1,10 +1,8 @@
-import React, { Component, useState } from 'react';
+import React, { useState, useEffect, } from 'react';
 import { useCurrentUser } from '@/hooks/index';
 import Slider from 'react-input-slider';
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
-import GPSicon from "../svg/gps"
-import NoGpsIcons from "../svg/Gpsno"
 import Cloudy from "../svg/cloudy"
 import Scattered from "../svg/scattered"
 import CloudyWindy from "../svg/cloudyWindy"
@@ -13,7 +11,8 @@ import Sunny from "../svg/sunny"
 import Thunderstorms from "../svg/tstorms"
 import Windy from "../svg/windy"
 import Snow from "../svg/snow"
-
+import Rain from "../svg/rain"
+import Button from '../button'
 
 
 export default function PostEditor() {
@@ -35,8 +34,6 @@ export default function PostEditor() {
   const wc  = (water.x - 32) * 5/9
   const l = ( size.x / 0.39370) 
   const [weather, setWeather] = useState(0);
-
-
 
 
 
@@ -112,11 +109,15 @@ export default function PostEditor() {
     <div>
   
       <form onSubmit={hanldeSubmit} autoComplete="off">
-        <span className="alert">{msg}</span>
+    <span className="alert">{msg}</span>
     <div className="header">
-    <p>Posting as: <b>{user ? user.name : null}</b></p>
+    <>Posting as: <b>{user ? user.name : null}</b></>
     </div>
-    <h2>Location</h2>
+ 
+    <div className="block">
+    <h3>Location</h3>
+    </div>
+
    <section className="location">
      <div className="block">
      <h3>Date:</h3>
@@ -129,6 +130,9 @@ export default function PostEditor() {
           type="text"
           value={new Date(startdate).toLocaleString()}
         />
+   </div>
+   <div>
+   <label for="appt">Select a time:</label>
    </div>
    <div>
         <input 
@@ -152,7 +156,6 @@ export default function PostEditor() {
             placeholder={river}
             value={river}
             onChange={onRiver}
-      
           />
         </div>
         <div>
@@ -163,12 +166,15 @@ export default function PostEditor() {
             placeholder={location}
             value={location}
             onChange={onLocation}
-
           />
         </div>
+       <small> Waypoint: {lat} {lon}</small>
      </div>
 </section>
-      <h2>Fish Caught</h2>
+<div className="block">
+<h3>Fish Caught</h3>
+</div>
+   
 <section className="location">
     <div className="block">
         <h3>Species:</h3>
@@ -214,14 +220,12 @@ export default function PostEditor() {
             onChange={onChange}
           />
         </div>
-</section>
+      </section>
 
-
-
-
-          <h2>Fishing Conditions</h2>
+      <div className="block">
+        <h3>Fishing Conditions</h3>
+      </div>
         <section className="location">
-       
         <div className="block">
         <h3>Streamflow: {cfs}</h3>
       <input
@@ -245,12 +249,13 @@ export default function PostEditor() {
           {weather === "PtCLD" && <PartlyCloudy  style="weather_icon" />}
           {weather === "Cld" && <Cloudy style="weather_icon" />}
           {weather === "CldWind" && <CloudyWindy style="weather_icon"/>}
-          {weather === "Rain" && "Rain"}
+          {weather === "Rain" && <Rain style="weather_icon"/>}
           {weather === "Scattered" && <Scattered style="weather_icon" />}
           {weather === "Wind" && <Windy  style="weather_icon" />}
           {weather === "ScatteredTStorm" && <Thunderstorms  style="weather_icon"/>}
           {weather === "Snow" && <Snow  style="weather_icon"/>}
           <div className="grid-ish">
+
 
   <div className="center weather_button">
     <div>  <Sunny style="small_icon"/></div>
@@ -274,7 +279,7 @@ export default function PostEditor() {
   </div>
 
   <div className="center weather_button">
-    <div>  <CloudyWindy style="small_icon"/></div>
+    <div>  <Rain style="small_icon"/></div>
     <div onClick={() => setWeather("Rain")}>Rain</div>
   </div>
   <div className="center weather_button">
@@ -289,11 +294,8 @@ export default function PostEditor() {
     <div>  <Snow style="small_icon"/></div>
     <div onClick={() => setWeather("Snow")}>Snow</div>
   </div>
+    </div>
 
-          </div>
-   
-      
-        
         <div className="block">
  <h3>Air Temerature:</h3>
           <p>{state.x}<sup>º</sup>F ~ {c.toFixed(0)}<sup>º</sup>C</p>
@@ -346,7 +348,9 @@ export default function PostEditor() {
         </section>
     
         <section>
-          <h2>Notes:</h2>
+          <div className="block">
+            <h3>Notes:</h3> 
+          </div>
           <div>
           <textarea
             name="content"
