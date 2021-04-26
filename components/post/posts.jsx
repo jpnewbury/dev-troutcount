@@ -36,6 +36,10 @@ function Post({ post }) {
           <ul>
           <li><b>Species:</b> {post.species}</li>
            <li><b>Length:</b> {post.size} inch ~ {Math.round(c.toFixed(2))} centimeter </li>
+           {post.fly && <li><b>Fly Useed:</b> {post.fly}</li>}
+          {post.hatch && <li><b>Hatch:</b> {post.hatch}</li>}
+           {post.streamflow && <li><b>Fishing Conditions:</b> {post.streamflow}</li>}
+           
          </ul>
          <p><b>Notes:</b> {post.content}</p>
           </div> 

@@ -33,6 +33,7 @@ export async function insertPost(
     content,
     lat,
     lon,
+    hatch,
     creatorId,
   }
 ) {
@@ -52,6 +53,7 @@ export async function insertPost(
       weather,
       AirTemp,
       content,
+      hatch,
       creatorId,
       createdAt: new Date(),
       _id: nanoid(12),

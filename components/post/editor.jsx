@@ -34,6 +34,7 @@ export default function PostEditor() {
   const wc  = (water.x - 32) * 5/9
   const l = ( size.x / 0.39370) 
   const [weather, setWeather] = useState(0);
+  const [hatch, setHatch] = useState(null);
 
 
 
@@ -61,6 +62,10 @@ export default function PostEditor() {
     // sets the state property for the location
     setRiver(event.target.value);
   };
+  const onHatch = (event) => {
+    // sets the state property for the location
+    setHatch(event.target.value);
+  };
 
 
 
@@ -80,6 +85,7 @@ export default function PostEditor() {
       content: e.currentTarget.content.value,
       lat: e.currentTarget.lat.value,
       lon: e.currentTarget.lon.value,
+      hatch: e.currentTarget.hatch.value,
     };
 
     if (!e.currentTarget.content.value) return;
@@ -156,6 +162,7 @@ export default function PostEditor() {
             placeholder={river}
             value={river}
             onChange={onRiver}
+            required="true"
           />
         </div>
         <div>
@@ -222,12 +229,31 @@ export default function PostEditor() {
         </div>
       </section>
 
+
+
+      <div className="block">
+        <h3>Hatch Activity</h3>
+      </div>
+      <section className="location">
+        <p>Is a hatch occuring that the fish are feeding on?</p>
+      <div className="block">
+        <h3>Hatch: &nbsp;{hatch}</h3>
+      <input
+            name="hatch"
+            type="text"
+            placeholder="whats hatching?"
+            onChange={onHatch}
+          />
+    </div>
+
+      </section>
       <div className="block">
         <h3>Fishing Conditions</h3>
       </div>
         <section className="location">
         <div className="block">
-        <h3>Streamflow: {cfs}</h3>
+        <h3>Water Conditions: {cfs}</h3>
+        <small>Streamflow, clarity etc...</small>
       <input
             name="streamflow"
             type="text"

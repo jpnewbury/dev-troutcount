@@ -48,6 +48,7 @@ handler.post(async (req, res) => {
     content: req.body.content,
     lat: req.body.lat,
     lon: req.body.lon,
+    hatch: req.body.hatch,
   });
 
   return res.json({ post });
